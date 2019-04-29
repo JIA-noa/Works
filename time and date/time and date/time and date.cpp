@@ -16,55 +16,40 @@ private:
 	int check();
 public:
 	CYider();
-	CYider(int y, int m, int d);
-	CYider(int h, int m, int s);
-	int setYider(int y, int m, int d);
+	CYider(int y, int m, int d,int h,int f,int s);
+	int setYider(int y, int m, int d, int h, int f, int s);
 	void exportCYider();
 	void addOneDay();
+	int getYear();
+	int getMonth();
+	int getDay();
+	int getHour();
+	int getMinute();
+	int getSecond();
 };
 CYider::CYider()
 {
 	year = 2019;
 	month = 1;
 	day = 1;
-}
-CYider::CYider()
-{
 	hour = 0;
 	minute = 0;
 	second = 0;
 }
-CYider::CYider(int y, int m, int d)
+CYider::CYider(int y, int m, int d, int h, int f, int s)
 {
 	year = y;
 	month = m;
 	day = d;
-	if (check() == 1 || check() == -1)
-	{
-		month = 1;
-		day = 1;
-		cout << "日期错误，月日已重制为1" << endl;
-	}
-}
-int CYider::setYider(int y, int m, int d)
-{
-	year = y;
-	month = m;
-	day = d;
-	if (check() == 1 || check() == -1)
-	{
-		month = 1;
-		day = 1;
-		cout << "日期错误，月日已重制为1" << endl;
-		return -1;
-	}
-	return 0;
-}
-CYider::CYider(int h, int m, int s)
-{
 	hour = h;
-	minute = m;
+	minute = f;
 	second = s;
+	if (check() == 1 || check() == -1)
+	{
+		month = 1;
+		day = 1;
+		cout << "日期错误，月日已重制为1" << endl;
+	}
 	if (check() == 1 || check() == -1)
 	{
 		hour = 0;
@@ -73,11 +58,21 @@ CYider::CYider(int h, int m, int s)
 		cout << "时间错误，已重制为0点" << endl;
 	}
 }
-int CYider::setYider(int h, int m, int s)
+int CYider::setYider(int y, int m, int d, int h, int f, int s)
 {
+	year = y;
+	month = m;
+	day = d;
 	hour = h;
-	minute = m;
+	minute = f;
 	second = s;
+	if (check() == 1 || check() == -1)
+	{
+		month = 1;
+		day = 1;
+		cout << "日期错误，月日已重制为1" << endl;
+		return -1;
+	}
 	if (check() == 1 || check() == -1)
 	{
 		hour = 0;
@@ -110,7 +105,21 @@ void CYider::addOneDay()
 {
 	int CommonYearDays[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 	int LeapYearDays[12] = { 31,29,31,30,31,30,31,31,30,31,30,31 };
-	day++;
+	if (second > 59 || second < 1)
+	{
+		second = 0;
+		minute++;
+	}
+	if (minute > 59 || second < 0)
+	{
+		minute = 0;
+		hour++;
+	}
+	if (hour > 23 || hour < 0)
+	{
+		hour = 0;
+		day++;
+	}
 	if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
 	{
 		if (LeapYearDays[month - 1] < day || day < 1)
@@ -133,12 +142,29 @@ void CYider::addOneDay()
 		}
 	}
 }
-int CYider::check()
+int CYider::getYear()
 {
-	if (second > 59 || second < 1)
-	{
-
-	}
+	return year;
+}
+int CYider::getMonth()
+{
+	return month;
+}
+int CYider::getDay()
+{
+	return day;
+}
+int CYider::getHour()
+{
+	return hour;
+}
+int CYider::getMinute()
+{
+	return minute;
+}
+int CYider::getSecond()
+{
+	return second;
 }
 void CYider::exportCYider()
 {
@@ -147,8 +173,7 @@ void CYider::exportCYider()
 int main()
 {
 	CYider od;
-	od.setYider(2019, 4, 25);
+	od.setYider();
 	od.exportCYider();
 	return 0;
 }
-

@@ -1,0 +1,4 @@
+﻿  height.cpp
+c:\users\hp301\documents\visual studio 2015\projects\height\height\height.cpp(10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  height.vcxproj -> c:\users\hp301\documents\visual studio 2015\Projects\height\Debug\height.exe
+  height.vcxproj -> c:\users\hp301\documents\visual studio 2015\Projects\height\Debug\height.pdb (Full PDB)

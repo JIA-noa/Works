@@ -1,0 +1,4 @@
+﻿  big clock.cpp
+c:\users\hp301\documents\visual studio 2015\projects\big clock\big clock\big clock.cpp(9): warning C4101: “z”: 未引用的局部变量
+  big clock.vcxproj -> c:\users\hp301\documents\visual studio 2015\Projects\big clock\Debug\big clock.exe
+  big clock.vcxproj -> c:\users\hp301\documents\visual studio 2015\Projects\big clock\Debug\big clock.pdb (Full PDB)
